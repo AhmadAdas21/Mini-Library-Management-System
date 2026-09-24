@@ -8,7 +8,7 @@ using Mini_Library_Management_System.models;
 
 namespace Mini_Library_Management_System
 {
-    internal class services : Iservices
+    public class services : Iservices
     {
         List<book> books = new List<book>();
         List<member>members = new List<member>();
