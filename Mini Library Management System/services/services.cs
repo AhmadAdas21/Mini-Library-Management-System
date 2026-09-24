@@ -199,9 +199,44 @@ namespace Mini_Library_Management_System
                 Console.WriteLine("this member is not avalvable");
                 return;
             }
+           
             if (members.Any(x => x.id == member_id))
             {
-                
+                var m= members.Where(x => x.id == member_id).FirstOrDefault();
+                DateTime borrow_date = DateTime.Now;
+                DateTime return_time = borrow_date.AddDays(20);
+                bool returned = false;
+                Console.WriteLine("enter the id of the book");
+                int bo;
+                while (true)
+                {
+                    if(int.TryParse(Console.ReadLine(), out bo))
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("please enter a valid number");
+                    }
+                }
+                if (books.Any(x => x.id == bo))
+                {
+                    var boo=books.Where(x => x.id == bo).FirstOrDefault();
+                    borrow_log b = new borrow_log(idd, m, boo, borrow_date, return_time, returned);
+                    borrow_logs.Add(b);
+                }
+                else
+                {
+                    Console.WriteLine("this book is not avalvable");
+                }
+
+
+
+            }
+            else
+            {
+                Console.WriteLine("this member isnt avaliable");
+
             }
         }
         public void return_book()
@@ -221,23 +256,15 @@ namespace Mini_Library_Management_System
                 }
             }
 
-            Console.WriteLine("enter the id of the member");
-            int member_id;
-            while (true)
+            if (borrow_logs.Any(x => x.id == idd))
             {
-                if (int.TryParse(Console.ReadLine(), out member_id))
-                {
-                    break;
-                }
-                else
-                {
-                    Console.WriteLine("please enter a valid number");
-                }
+                var c=borrow_logs.Where(x => x.id == idd).FirstOrDefault();
+                c.is_returned = true;
+               // borrow_logs.Add(c);
             }
-            if(!members.Any(x => x.id == member_id))
+            else
             {
-                Console.WriteLine("this member is not avalvable");
-                return;
+                Console.WriteLine("the id enterd is not correct");
             }
 
 
