@@ -17,10 +17,11 @@ namespace Mini_Library_Management_System
         public void add_books()
         {
             Console.WriteLine("you are in adding books feature");
+            Console.WriteLine("please enter the id of the book");
             int idd;
             while (true)
             {
-                if(int.TryParse(Console.ReadLine(), out idd))
+                if (int.TryParse(Console.ReadLine(), out idd))
                 {
                     break;
                 }
@@ -28,6 +29,7 @@ namespace Mini_Library_Management_System
                 {
                     Console.WriteLine("please enter a valid number");
                 }
+            }
                 if(books.Any(x=>x.id==idd))
                 {
                     Console.WriteLine("this id is already taken please enter another one");
@@ -39,7 +41,8 @@ namespace Mini_Library_Management_System
                 string author;
                 Console.WriteLine("please enter the author of the book");
                 author = Console.ReadLine();
-                float price;
+            Console.WriteLine("enter the price of the book");
+            float price;
                 while (true)
                 {
                     if (float.TryParse(Console.ReadLine(), out price))
@@ -87,7 +90,7 @@ namespace Mini_Library_Management_System
                 books.Add(b);
 
 
-            }
+            
         }
         public void view_books()
         {
