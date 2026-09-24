@@ -244,22 +244,70 @@ namespace Mini_Library_Management_System
         }
         public void show_avalaible_books()
         {
+            Console.WriteLine("you are in show avaliable books feature");
+            var avi= books.Where(x => x.avaliable == true).ToList();
+            if (avi.Count > 0)
+            {
+                avi.ForEach(x => Console.WriteLine($"id: {x.id} name: {x.name} author: {x.author} price: {x.price} category: {x.category} avaliable: {x.avaliable}"));
+            }
+            else
+            {
+                Console.WriteLine("there is no avaliable books");
+            }
+            Console.WriteLine("thanks for using this feature");
 
         }
         public void show_borrowed_books()
         {
+            Console.WriteLine("ypu are in borrowed books feature");
+            var bo = borrow_logs.Where(x => x.is_returned == false).ToList();
+            if (bo.Count > 0)
+            {
+                bo.ForEach (x => Console.WriteLine($"id: {x.id} member: {x.member.name} book: {x.book.name} borrow date: {x.borrow_date} return time: {x.return_time} is returned: {x.is_returned}")) ;
+            }
+            else
+            {
+                Console.WriteLine("thers no borrowed books");
+            }
 
         }
         public void filter_books_by_category()
         {
-
+            Console.WriteLine("you are in filter books by category");
+            Console.WriteLine("please enter the categorey you want to filter by");
+            string c = Console.ReadLine();
+            var filtered = books.Where(x => x.category == c).ToList();
+            if (filtered.Count() != 0) { 
+            filtered.ForEach(x => Console.WriteLine($"id: {x.id} name: {x.name} author: {x.author} price: {x.price} category: {x.category} avaliable: {x.avaliable}"));
+            }
+            else
+            {
+                Console.WriteLine("theres no books in this category");
+            }
         }
         public void sort_books_desc()
         {
-
+            Console.WriteLine("you are in sort books byy price desc feature");
+            var c = books.OrderByDescending(x => x.price).ToList();
+            c.ForEach(x => Console.WriteLine($"id: {x.id} name: {x.name} author: {x.author} price: {x.price} category: {x.category} avaliable: {x.avaliable}"));
+            /*
+             * foreach(var i in c){
+             * console.writeline($"id:{i.id} name:{i.name}price:{i.price});
+             * }
+             * 
+             * 
+             * 
+             * */
         }
         public void show_library_statistics()
         {
+            Console.WriteLine("you are in library stetics view");
+            Console.WriteLine("the books in the libraty:");
+            Console.WriteLine(books.Count);
+            Console.WriteLine("the count of subscribed members in the library");
+            Console.WriteLine(members.Count);
+            Console.WriteLine("the number of books that borrowed are");
+            Console.WriteLine(borrow_logs.Count);
 
         }
     }
