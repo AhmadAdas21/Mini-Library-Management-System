@@ -162,10 +162,84 @@ namespace Mini_Library_Management_System
         }
         public void borrow_book()
         {
-
+            Console.WriteLine("you are in the borrow books farute");
+            Console.WriteLine("enter th id of the log");
+            int idd;
+            while (true)
+            {
+               if(int.TryParse(Console.ReadLine(), out idd))
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("please enter a valid number");
+                }
+            }
+            if (borrow_logs.Any(x => x.id == idd))
+            {
+                Console.WriteLine("this id is already taken please enter another one");
+                return;
+            }
+            Console.WriteLine("enter the id of the member");
+            int member_id;
+            while (true)
+            {
+                if ((int.TryParse(Console.ReadLine(), out member_id)))
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("enter valid value");
+                }
+            }
+            if(!members.Any(x => x.id == member_id))
+            {
+                Console.WriteLine("this member is not avalvable");
+                return;
+            }
+            if (members.Any(x => x.id == member_id))
+            {
+                
+            }
         }
         public void return_book()
         {
+            Console.WriteLine("you are in the return books feature");
+            Console.WriteLine("enter the id of the log");
+            int idd;
+            while ((true))
+            {
+                if(int.TryParse(Console.ReadLine(), out idd))
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("please enter a valid number");
+                }
+            }
+
+            Console.WriteLine("enter the id of the member");
+            int member_id;
+            while (true)
+            {
+                if (int.TryParse(Console.ReadLine(), out member_id))
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("please enter a valid number");
+                }
+            }
+            if(!members.Any(x => x.id == member_id))
+            {
+                Console.WriteLine("this member is not avalvable");
+                return;
+            }
+
 
         }
         public void show_avalaible_books()
