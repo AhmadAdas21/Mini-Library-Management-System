@@ -11,5 +11,10 @@ namespace Mini_Library_Management_System.models
         public int id { get; set;
         }
         public string name { get; set; }
+        public person(int id,string name)
+        {
+            this.name = name;
+            this.id = id;
+        }
     }
 }
