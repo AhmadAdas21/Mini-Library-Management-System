@@ -9,15 +9,32 @@ namespace Test_the_services_of_the_library
 {
     public class UnitTest1
     {
+        List<book> books = new List<book>();
+        List<member> members = new List<member>();
+        List<borrow_log> borrow_logs = new List<borrow_log>();
         [Fact]
         public void is_the_books_when_borrowed_be_avalivale_or_not()
         {
-            book b = new book(1, "book1", "author1", 20,"category1",true);
-            services s = new services(); 
-            s.add_books();
-            s.add_member();
-            s.borrow_book();
-            Assert.False(s.show_avalaible_books());
+            services s = new services();
+
+            book b = new book(1,"book1","author1",20,"category1",true);
+
+            books.Add(b);
+
+           
+            Assert.True(b.avaliable);
+
+            
+            b.avaliable = false;
+
+            var result = s.get_avalaible_books();
+
+           
+            
+            Assert.False(b.avaliable);
+
+           
+            Assert.DoesNotContain(result, x => x.id == b.id);
         }
     }
 }

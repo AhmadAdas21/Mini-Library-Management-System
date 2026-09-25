@@ -225,6 +225,7 @@ namespace Mini_Library_Management_System
                 if (books.Any(x => x.id == bo))
                 {
                     var boo=books.Where(x => x.id == bo).FirstOrDefault();
+                    boo.avaliable = false;
                     borrow_log b = new borrow_log(idd, m, boo, borrow_date, return_time, returned);
                     borrow_logs.Add(b);
                 }
@@ -263,7 +264,9 @@ namespace Mini_Library_Management_System
             {
                 var c=borrow_logs.Where(x => x.id == idd).FirstOrDefault();
                 c.is_returned = true;
-               // borrow_logs.Add(c);
+                c.book.avaliable = true;
+                c.borrow_date = DateTime.Now;
+                // borrow_logs.Add(c);
             }
             else
             {
@@ -339,6 +342,10 @@ namespace Mini_Library_Management_System
             Console.WriteLine("the number of books that borrowed are");
             Console.WriteLine(borrow_logs.Count);
 
+        }
+        public List<book> get_avalaible_books()
+        {
+            return books.Where(x => x.avaliable==true).ToList();
         }
     }
 }
